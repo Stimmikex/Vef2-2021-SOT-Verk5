@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
-class Example1 extends Component {
+class News extends Component {
     state = {
         loading: true,
         news: null,
@@ -13,23 +19,25 @@ class Example1 extends Component {
 	render() {
 		return (
             <div>
-                <p>{console.log(this.state)}</p>
+                <h1>Rúv Fréttir</h1>
                 {this.state.loading || !this.state.news ? (
                     <div>loading...</div>
                 ) : (
-                    <div>
+                    <div class="news_container">
                         {
                         this.state.news.map((data, i) => { 
                             return (
-                                <div>
-                                    <p>{data.id}</p>
+                                <div class="news_container-news">
                                     <NewsCategory link={data.url}></NewsCategory>
+                                    <Link to={data.id}>Allar Fréttar</Link>
                                 </div>
                             )
                         })
                         }
-                    </div>
+                    </div>  
                 )}
+                <hr></hr>
+                <p>Fréttir frá <a href="https://www.ruv.is/">RÚV</a></p>
             </div>
         );
     }
@@ -42,34 +50,32 @@ class NewsCategory extends Component {
     }
     async componentDidMount() {
         const reponse = await fetch(this.props.link);
-        console.log(this.props.link);
         const data = await reponse.json();
-        console.log(data)
         this.setState({ news: data, loading: false })
     }
 	render() {
 		return (
             <div>
-                <p>{console.log(this.state)}</p>
-                {this.state.loading || !this.state.news.items ? (
+                {this.state.loading || !this.state.news ? (
                     <div>loading...</div>
                 ) : (
                     <div>
-                        { (this.props.link) ? (
-                            <div>loading...</div>
-                        ) : (
-                            this.state.items.map((data, i) => { 
-                                return (
-                                    <div>
-                                        <a href="{data.link}">{data.title}</a>
-                                    </div>
-                                )
-                            })
-                        )}
+                        <p>{this.state.news.title}</p>
+                        {console.log(this.state.news.items)}
+                        {this.state.news.items.map((data, i) => { 
+                            return (
+                                <div>
+                                    <a href={data.link}>{data.title}</a>
+                                </div>
+                            )
+                        })}
                     </div>
                 )}
             </div>
         );
     }
-} 
-export default Example1;
+}
+export {
+    NewsCategory,
+    News,
+}
