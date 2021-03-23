@@ -1,37 +1,43 @@
 import React, { Component } from 'react';
+import NewsCategory from '../newsCategory/NewsCategory.js';
+import './News.scss';
 
-class newsCategory extends Component {
+const {
+    REACT_APP_API_URL: apiUrl,
+  } = process.env;
+
+class News extends Component {
     state = {
         loading: true,
         news: null,
     }
     async componentDidMount() {
-        const reponse = await fetch('https://vef2-2021-ruv-rss-json-proxy.herokuapp.com/');
+        console.log('url' + apiUrl);
+        const reponse = await fetch(apiUrl);
+        console.log(reponse);
         const data = await reponse.json();
         this.setState({ news: data, loading: false })
     }
 	render() {
 		return (
             <div>
-                <p>{console.log(this.state)}</p>
                 {this.state.loading || !this.state.news ? (
                     <div>loading...</div>
                 ) : (
-                    <div>
+                    <div class="news_container">
                         {
                         this.state.news.map((data, i) => { 
                             return (
-                                <div>
-                                    <p>{data.id}</p>
-                                    <a href='{data.map}'>link</a>
+                                <div class="news_container-news">
+                                    <NewsCategory link={data.url} amount={5} path={data.id}></NewsCategory>
                                 </div>
                             )
                         })
                         }
-                    </div>
+                    </div>  
                 )}
             </div>
         );
     }
-} 
-export default newsCategory;
+}
+export default News;

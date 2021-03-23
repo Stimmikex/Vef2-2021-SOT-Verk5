@@ -6,25 +6,30 @@ import {
   Route,
   useParams
 } from "react-router-dom";
-import { News, NewsCategory }from './test';
+import News from './component/news/News.js';
+import NewsCategory from './component/newsCategory/NewsCategory.js';
+
+const {
+  REACT_APP_API_URL: apiUrl,
+} = process.env;
 
 class App extends Component {
   render() {
     return (
-        // <div className="App">
-        //   <News></News>
-        // </div>
           <Router>
             <div>
-      
-              {/* A <Switch> looks through its children <Route>s and
-                  renders the first one that matches the current URL. */}
               <Switch>
                 <Route path="/:id">
+                  <h1>Rúv Fréttir</h1>
                   <Child></Child>
+                  <hr></hr>
+                  <p>Fréttir frá <a href="https://www.ruv.is/">RÚV</a></p>
                 </Route>
                 <Route path="/">
+                  <h1>Rúv Fréttir</h1>
                   <News></News>
+                  <hr></hr>
+                  <p>Fréttir frá <a href="https://www.ruv.is/">RÚV</a></p>
                 </Route>
               </Switch>
             </div>
@@ -36,11 +41,11 @@ function Child() {
   // We can use the `useParams` hook here to access
   // the dynamic pieces of the URL.
   let { id } = useParams();
-  const url = 'https://vef2-2021-ruv-rss-json-proxy.herokuapp.com/'+ id;
+  const url = apiUrl + id;
 
   return (
     <div>
-      <NewsCategory link={url}></NewsCategory>
+      <NewsCategory link={url} amount={19}></NewsCategory>
     </div>
   );
 }
