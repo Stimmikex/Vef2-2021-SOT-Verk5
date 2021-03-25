@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import News from './component/news/News.js';
 import NewsCategory from './component/newsCategory/NewsCategory.js';
-
 const {
   REACT_APP_API_URL: apiUrl,
 } = process.env;
@@ -31,6 +30,9 @@ class App extends Component {
                   <hr></hr>
                   <p>Fréttir frá <a href="https://www.ruv.is/">RÚV</a></p>
                 </Route>
+                <Route path="*">
+                  <h1>404 Villa, þessi síða er ekki til.</h1>
+                </Route>
               </Switch>
             </div>
           </Router>
@@ -45,7 +47,8 @@ function Child() {
 
   return (
     <div>
-      <NewsCategory link={url} amount={19}></NewsCategory>
+      <NewsCategory link={url} amount={19} back={''}></NewsCategory>
+  
     </div>
   );
 }

@@ -23,14 +23,22 @@ class NewsCategory extends Component {
                     <div class='news_container-id'>
                         <p>{this.state.news.title}</p>
                         {console.log(this.state.news.items)}
-                        {this.state.news.items.map((data, i) => { 
-                            return (
-                                <div>
-                                    {i <= this.props.amount ? (<a href={data.link}>{data.title}</a>) : (console.log('nothing'))}
-                                </div>
-                            )
-                        })}
-                        <Link to={this.props.path}>Allar Fréttar</Link>
+                        {typeof this.state.news.items !== 'undefined' ? (
+                            this.state.news.items.map((data, i) => { 
+                                return (
+                                    <div>
+                                        {i <= this.props.amount ? (<a href={data.link}>{data.title}</a>) : (console.log('nothing'))}
+                                    </div>
+                                )
+                            })
+                        ) : (
+                            <h1>404: Það er ekkert með þetta id</h1>
+                        )}
+                        {this.props.back === '' ? (
+                            <Link to="/">Til Baka</Link>
+                        ) : (
+                            <Link to={this.props.path}>Allar Fréttar</Link>
+                        )}
                     </div>
                 )}
             </div>

@@ -12,7 +12,6 @@ class News extends Component {
         news: null,
     }
     async componentDidMount() {
-        console.log('url' + apiUrl);
         const reponse = await fetch(apiUrl);
         console.log(reponse);
         const data = await reponse.json();
@@ -29,7 +28,7 @@ class News extends Component {
                         this.state.news.map((data, i) => { 
                             return (
                                 <div class="news_container-news">
-                                    <NewsCategory link={data.url} amount={5} path={data.id}></NewsCategory>
+                                    <NewsCategory link={data.url} amount={5} path={data.id} baka={"test"}></NewsCategory>
                                 </div>
                             )
                         })
