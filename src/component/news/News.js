@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NewsCategory from '../newsCategory/NewsCategory.js';
-import './News.scss';
+import N from './News.module.scss';
 
 const {
     REACT_APP_API_URL: apiUrl,
@@ -23,11 +23,11 @@ class News extends Component {
                 {this.state.loading || !this.state.news ? (
                     <div>loading...</div>
                 ) : (
-                    <div class="news_container">
+                    <div className={N.news_container}>
                         {
                         this.state.news.map((data, i) => { 
                             return (
-                                <div class="news_container-news">
+                                <div className={N.news_container_news}>
                                     <NewsCategory link={data.url} amount={5} path={data.id} baka={"test"}></NewsCategory>
                                 </div>
                             )

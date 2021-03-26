@@ -1,4 +1,4 @@
-import './App.css';
+import './App.module.scss';
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
@@ -48,7 +48,6 @@ function Child() {
   return (
     <div>
       <NewsCategory link={url} amount={19} back={''}></NewsCategory>
-  
     </div>
   );
 }

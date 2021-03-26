@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     Link
 } from "react-router-dom";
-import './NewsCategory.scss';
+import NC from './NewsCategory.module.scss';
 
 class NewsCategory extends Component {
     state = {
@@ -20,7 +20,7 @@ class NewsCategory extends Component {
                 {this.state.loading || !this.state.news ? (
                     <div>loading...</div>
                 ) : (
-                    <div class='news_container-id'>
+                    <div className={NC.news_container_id}>
                         <p>{this.state.news.title}</p>
                         {console.log(this.state.news.items)}
                         {typeof this.state.news.items !== 'undefined' ? (

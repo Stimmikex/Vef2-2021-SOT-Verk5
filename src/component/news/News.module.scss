@@ -5,8 +5,17 @@
     width: 100%;
   }
 
-.news_container-id {
+.news_container_id {
     padding: 1em;
     background-color: bisque;
     border-radius: 2%;
+}
+
+.news_container_news {
+  width: 30%;
+  border: 1px solid;
+  margin: 0.5em;
+  background-color:bisque;
+  border-radius: 2%;
+  height: 25em;
 }
